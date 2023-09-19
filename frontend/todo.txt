@@ -1,0 +1,2 @@
+upon success login navigate to main page
+make session

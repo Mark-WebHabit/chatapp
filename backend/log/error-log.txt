@@ -1,0 +1,9 @@
+Mon Sep 18 2023 09:06am				POST			/user/register			500			Username too short, must be atleast 2 characters
+Mon Sep 18 2023 09:06am				POST			/user/register			500			All fields are required
+Mon Sep 18 2023 09:06am				POST			/user/register			500			Password too short, must be atleast 6 characters
+Mon Sep 18 2023 09:10am				POST			/user/login			500			req is not defined
+Mon Sep 18 2023 09:11am				POST			/user/login			500			data and hash arguments required
+Mon Sep 18 2023 09:12am				POST			/user/login			500			data and hash arguments required
+Mon Sep 18 2023 09:12am				POST			/user/login			500			data and hash arguments required
+Mon Sep 18 2023 09:14am				POST			/user/login			500			All fields are required
+Mon Sep 18 2023 09:14am				POST			/user/login			500			All fields are required

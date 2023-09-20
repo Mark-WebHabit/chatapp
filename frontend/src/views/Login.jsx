@@ -91,7 +91,7 @@ const Login = () => {
         value={password}
       />
       <Button submit={handleSubmit} />
-      <RedirectLink text={"Create account"} path={"/"} />
+      <RedirectLink text={"Create account"} path={"/register"} />
     </AuthTemplate>
   );
 };

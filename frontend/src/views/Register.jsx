@@ -104,7 +104,7 @@ const Register = () => {
         value={cpass}
       />
       <Button submit={handleSubmit} />
-      <RedirectLink text={"Already have an account"} path={"/login"} />
+      <RedirectLink text={"Already have an account"} path={"/"} />
     </AuthTemplate>
   );
 };

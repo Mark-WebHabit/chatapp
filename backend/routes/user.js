@@ -5,6 +5,6 @@ import { getSingleUser } from "../controllers/userController.js";
 
 const router = express.Router();
 
-router.post("/", getSingleUser);
+router.get("/", getSingleUser);
 
 export default router;

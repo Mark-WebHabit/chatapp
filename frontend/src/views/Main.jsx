@@ -6,11 +6,19 @@ import Sidebar from "../components/SideBar/Sidebar";
 import ChatWindow from "../components/ChatWindow/ChatWindow";
 
 // custome hook
-import { useAuth } from "../context/AuthContext";
+import useAuth from "../hooks/useAuth.js";
+import { Navigate } from "react-router-dom";
 
 const Main = () => {
-  const { user } = useAuth();
-  console.log(user);
+  const [user, loading] = useAuth();
+
+  if (loading) {
+    return <div>Loading</div>;
+  }
+  // if there is no user found
+  if (!user?.username) {
+    return <Navigate to={"/"} />;
+  }
   return (
     <Container>
       <Sidebar />

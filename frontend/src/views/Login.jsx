@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 // asset || template
 import AuthTemplate from "../Templates/Authtemplate";
@@ -9,6 +9,9 @@ import RedirectLink from "../Templates/RedirectLink";
 
 // axios instance
 import { instance } from "../api/instance.js";
+
+// custom hook
+import useAuth from "../hooks/useAuth";
 
 // utilities
 import {
@@ -21,7 +24,12 @@ const Login = () => {
     username: "",
     password: "",
   });
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
+
+  // cutom hook
+  const [user, loading] = useAuth();
+
   // destructure the state
   const { username, password } = formData;
 
@@ -33,7 +41,6 @@ const Login = () => {
       }, 3000);
     }
   }, [error]);
-  const navigate = useNavigate();
 
   // pass the handlechange to a new function to pass the state handle built in react to reduce the argument
   const handleOnChange = (name, val) => {
@@ -76,6 +83,16 @@ const Login = () => {
       }
     }
   };
+
+  // if loading
+  if (loading) {
+    return <div>Loading</div>;
+  }
+
+  // if there is a user already authenticated
+  if (user.username) {
+    return <Navigate to={"/main"} />;
+  }
 
   return (
     <AuthTemplate page={"SIGN-IN"} error={error}>

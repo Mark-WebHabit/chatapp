@@ -112,6 +112,7 @@ const login = asyncHandler(async (req, res) => {
   });
 
   req.session.userId = existingUser._id;
+  req.session.authenticated = true;
 
   return res.json({ accessToken });
 });

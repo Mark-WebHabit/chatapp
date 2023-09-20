@@ -14,9 +14,7 @@ export const verifyToken = asyncHandler(async (req, res, next) => {
   }
 
   // Get the JWT token from the cookie
-  console.log(req.cookies);
   const token = req.cookies.jwt;
-  console.log(token);
 
   if (!token) {
     // If there is no access token found in the cookie, return Unauthorized

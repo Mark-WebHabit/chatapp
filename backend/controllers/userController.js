@@ -16,15 +16,11 @@ export const getSingleUser = asyncHandler(async (req, res) => {
   }
 
   //   check if id is valid
-  const IdOwner = await Users.findById(id);
+  const IdOwner = await Users.findById(id).select("-password -refreshToken");
   if (!IdOwner) {
     // if id is not found in the db
     return res.status(404).json({ message: "User not found" });
   }
 
-  //   conver retireved data to object and hide the password
-  const user = IdOwner.toObject();
-  delete user._id;
-
-  return res.json({ data: user });
+  return res.json({ data: IdOwner });
 });

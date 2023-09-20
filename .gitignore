@@ -28,6 +28,7 @@
 
 # backend files and folders
 /backend/node_modules
+/backend/log
 
 
 .env

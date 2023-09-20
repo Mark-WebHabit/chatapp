@@ -59,7 +59,7 @@ const Register = () => {
         return;
       }
 
-      const response = await instance.post("/user/register", {
+      const response = await instance.post("/auth/register", {
         username,
         password,
       });

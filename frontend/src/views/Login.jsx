@@ -51,12 +51,14 @@ const Login = () => {
         setError("Password too short, must be 8 characters and above");
         return;
       }
-      const response = await instance.post("/user/login", {
+      const response = await instance.post("/auth/login", {
         username,
         password,
       });
 
-      console.log(response.data);
+      if (response.data) {
+        navigate("/main");
+      }
     } catch (error) {
       // Handle errors from the server here
       console.log(error);

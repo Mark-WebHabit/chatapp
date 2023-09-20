@@ -13,7 +13,7 @@ import { Users } from "../Model/Users.js";
 dotenv.config();
 
 // REGISTER - POST
-// ENDPOINT: /user/register
+// ENDPOINT: /auth/register
 // @private-access
 const register = asyncHandler(async (req, res) => {
   const { username, password } = req.body;
@@ -54,7 +54,7 @@ const register = asyncHandler(async (req, res) => {
 });
 
 // LOGIN - POST
-// ENDPOINT: /user/login
+// ENDPOINT: /auth/login
 // @private-access
 const login = asyncHandler(async (req, res) => {
   const { username, password } = req.body;
@@ -64,7 +64,6 @@ const login = asyncHandler(async (req, res) => {
 
   // check if the username matches any user from the db
   const existingUser = await Users.findOne({ username });
-  console.log(existingUser);
 
   if (!existingUser) {
     //if there is no user found
@@ -100,17 +99,19 @@ const login = asyncHandler(async (req, res) => {
   );
 
   // store access token to http only cookie
-  res.cookie("accessToken", accessToken, {
+  res.cookie("jwt", accessToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
     maxAge: 24 * 60 * 60 * 1000,
-    sameSite: "Lax",
+    sameSite: "strict",
+    secure: process.env.NODE_ENV === "production",
   });
 
   // save the refresh token to db that correspond to the user
   await Users.findByIdAndUpdate(existingUser._id, {
     refreshToken,
   });
+
+  req.session.userId = existingUser._id;
 
   return res.json({ accessToken });
 });

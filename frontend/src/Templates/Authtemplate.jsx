@@ -65,8 +65,8 @@ const PageText = styled.p`
 const ErrorMessage = styled.span`
   display: block;
   text-align: center;
-  margin: 1.5em;
+  margin: 0.5em;
   opacity: ${(props) => (props.$error ? "1" : "0")};
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   color: white;
 `;
